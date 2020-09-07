@@ -1,0 +1,41 @@
+# import the necessary libraries 
+import nltk 
+import string 
+import re 
+
+#open file
+f = open('a.txt', 'r')
+content = f.read()
+
+#total words count
+print('Total words:   ', len(content.split()))
+
+#convert into small characters
+def text_lowercase(text): 
+    return text.lower()
+str_lower_case=text_lowercase(content)
+
+# Remove numbers 
+def remove_numbers(new_str): 
+    result = re.sub(r'\d+', '', new_str) 
+    return result 
+str_without_no = remove_numbers(new_str) 
+print('str_without_no:',str_without_no)
+
+# remove punctuation 
+def remove_punctuation(str_without_no): 
+    translator = str.maketrans('', '', string.punctuation) 
+    return str_without_no.translate(translator) 
+str_without_punctuation = remove_punctuation(str_without_no) 
+print('str_without_punctuation:',str_without_punctuation)
+
+#unique words count
+#Split the words
+words = str_without_punctuation.split()
+#Using a set will only save the unique words
+unique_words = set(words)
+#You can then print the set as a whole or loop through the set etc
+for word in unique_words:
+     print(word)
+print(len(unique_words))
+

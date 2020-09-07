@@ -1,0 +1,21 @@
+#open file
+f = open('a.txt', 'r')
+content = f.read()
+#copy specific lines from one file to another
+with open('input.txt') as infile, open('output.txt', 'w') as outfile:
+    copy = False
+    for line in infile:
+        if line.strip() == "#startfromhere":
+            copy = True
+        elif line.strip() == "#endhere":
+            copy = False
+        elif copy:
+            outfile.write(line)
+
+#concatenate text files into one
+filenames = ['corpus1.txt', 'corpus2.txt', 'corpus3.txt','corpus4.txt']
+with open('corpus.txt', 'w') as outfile:
+    for fname in filenames:
+        with open(fname) as infile:
+            for line in infile:
+                outfile.write(line)
